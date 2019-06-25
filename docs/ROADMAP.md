@@ -32,7 +32,7 @@ In Q3, there are a few groups of tasks we'd like to work on:
       https://github.com/strongloop/loopback-next/issues/2900
 - [ ] Add authorization to example-shopping repo
 
-#### Inclusion of Related Models
+#### Inclusion of Related Models https://github.com/strongloop/loopback-next/issues/1352
 
 - awaiting to @bajtos' spike to create the tasks
 
@@ -46,7 +46,8 @@ In Q3, there are a few groups of tasks we'd like to work on:
 
 - [ ] Fix CI for
       [dashdb](https://github.com/strongloop/loopback-connector-dashdb/issues/76)
-      and [db2](https://github.com/strongloop/loopback-connector-db2/issues/130)
+- [ ] Fix CI for
+      [db2](https://github.com/strongloop/loopback-connector-db2/issues/130)
       connector
 - [ ] Test juggler 3.x and 4.x on connectors
 
@@ -58,12 +59,8 @@ In Q3, there are a few groups of tasks we'd like to work on:
 
 #### Internal tooling - to address build time
 
-_Note: I'm copying from the slack discussion:
-https://ibmapim.slack.com/archives/C0WCN2EBG/p1560265245146700_
-
-- Spike: Investigate how to use Azure Pipelines to replace AppVeyor
-- pick a single Node.js version to test on Windows and MacOS. Only on Linux test
-  all Node.js versions.
+- Spike: Investigate setting up Windows CI workflow for connectors using Azure
+  Pipelines, https://github.com/strongloop/loopback-next/issues/3161
 
 #### Documentation improvement https://github.com/strongloop/loopback-next/pull/2925
 
@@ -73,6 +70,14 @@ https://ibmapim.slack.com/archives/C0WCN2EBG/p1560265245146700_
 
 - Review of
   [DB2 connector on IBM i](https://github.com/strongloop/loopback-connector-ibmi)
+
+#### Bug fixes / Developer Experience Improvements
+
+- Bugs:
+  https://github.com/strongloop/loopback-next/issues?q=is%3Aopen+is%3Aissue+label%3Abug+-label%3A%22good+first+issue%22+-label%3A%22help+wanted%22
+
+- Developer Experience (Pick a few):
+  https://github.com/strongloop/loopback-next/issues?utf8=✓&q=is%3Aopen+is%3Aissue+-label%3A%22good+first+issue%22+-label%3A%22help+wanted%22+label%3Adeveloper-experience+
 
 #### Juggler next
 
