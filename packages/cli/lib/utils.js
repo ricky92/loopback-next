@@ -26,6 +26,7 @@ const connectors = require('../generators/datasource/connectors.json');
 const stringifyObject = require('stringify-object');
 const camelCase = _.camelCase;
 const kebabCase = _.kebabCase;
+const untildify = require('untildify');
 const readdirAsync = promisify(fs.readdir);
 const toFileName = name => {
   return kebabCase(name).replace(/\-(\d+)$/g, '$1');
@@ -105,7 +106,7 @@ exports.validateClassName = function(name) {
  * Validate project directory to not exist
  */
 exports.validateNotExisting = function(projDir) {
-  if (fs.existsSync(projDir)) {
+  if (fs.existsSync(untildify(projDir))) {
     return util.format('Directory %s already exists.', projDir);
   }
   return true;
@@ -127,6 +128,7 @@ exports.camelCase = camelCase;
 exports.toVarName = toVarName;
 exports.pluralize = pluralize;
 exports.urlSlug = urlSlug;
+exports.untildify = untildify;
 
 exports.validate = function(name) {
   const isValid = validate(name).validForNewPackages;
