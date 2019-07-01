@@ -22,6 +22,18 @@ export function toJSON(value: unknown[]): unknown[];
  */
 export function toJSON(value: object): object;
 
+// TODO(bajtos) add a unit test for this overload
+// We need it to support `toJSON(todoRepo.findOne(...))`
+export function toJSON(value: object | null): object | null;
+
+// TODO(bajtos) add unit tests for these overloads
+// We don't have a specific usage for them yet, I am adding them for
+// completeness only.
+export function toJSON(value: object | undefined): object | undefined;
+export function toJSON(
+  value: object | null | undefined,
+): object | null | undefined;
+
 // The following overloads are provided for convenience.
 // In practice, they should not be necessary, as they simply return the input
 // value without any modifications.
