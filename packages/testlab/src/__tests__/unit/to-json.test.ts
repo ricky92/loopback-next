@@ -62,6 +62,50 @@ describe('toJSON', () => {
     expectUndefined(value);
   });
 
+  it('handles `object | null`', () => {
+    const input: object | null = Math.random() ? {} : null;
+    const output = toJSON(input);
+    expectComplexType<object | null>(output, input);
+  });
+
+  it('handles `object | undefined`', () => {
+    const input: object | undefined = Math.random() ? {} : undefined;
+    const output = toJSON(input);
+    expectComplexType<object | undefined>(output, input);
+  });
+
+  it('handles `object | null | undefined`', () => {
+    const input: object | null | undefined = Math.random()
+      ? {}
+      : Math.random()
+      ? null
+      : undefined;
+    const output = toJSON(input);
+    expectComplexType<object | null | undefined>(output, input);
+  });
+
+  it('handles `unknown[] | null`', () => {
+    const input: unknown[] | null = Math.random() ? [] : null;
+    const output = toJSON(input);
+    expectComplexType<unknown[] | null>(output, input);
+  });
+
+  it('handles `unknown[] | undefined`', () => {
+    const input: unknown[] | undefined = Math.random() ? [] : undefined;
+    const output = toJSON(input);
+    expectComplexType<unknown[] | undefined>(output, input);
+  });
+
+  it('handles `unknown[] | null | undefined`', () => {
+    const input: unknown[] | null | undefined = Math.random()
+      ? []
+      : Math.random()
+      ? null
+      : undefined;
+    const output = toJSON(input);
+    expectComplexType<unknown[] | null | undefined>(output, input);
+  });
+
   it('handles classes with custom toJSON', () => {
     class Customer {
       private __data: object;
@@ -155,4 +199,8 @@ function expectNull(actual: null) {
 
 function expectUndefined(actual: undefined) {
   expect(actual).to.be.undefined();
+}
+
+function expectComplexType<T>(actual: T, expected: T) {
+  expect(actual).to.deepEqual(expected);
 }
