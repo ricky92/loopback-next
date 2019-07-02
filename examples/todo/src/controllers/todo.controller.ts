@@ -3,8 +3,8 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-import {inject} from '@loopback/core';
-import {Filter, repository} from '@loopback/repository';
+import { inject } from '@loopback/core';
+import { Filter, repository } from '@loopback/repository';
 import {
   del,
   get,
@@ -16,21 +16,21 @@ import {
   put,
   requestBody,
 } from '@loopback/rest';
-import {Todo} from '../models';
-import {TodoRepository} from '../repositories';
-import {GeocoderService} from '../services';
+import { Todo, TodoEx } from '../models';
+import { TodoRepository } from '../repositories';
+import { GeocoderService } from '../services';
 
 export class TodoController {
   constructor(
     @repository(TodoRepository) protected todoRepo: TodoRepository,
     @inject('services.GeocoderService') protected geoService: GeocoderService,
-  ) {}
+  ) { }
 
   @post('/todos', {
     responses: {
       '200': {
         description: 'Todo model instance',
-        content: {'application/json': {schema: {'x-ts-type': Todo}}},
+        content: { 'application/json': { schema: { 'x-ts-type': Todo } } },
       },
     },
   })
@@ -51,7 +51,7 @@ export class TodoController {
     responses: {
       '200': {
         description: 'Todo model instance',
-        content: {'application/json': {schema: {'x-ts-type': Todo}}},
+        content: { 'application/json': { schema: { 'x-ts-type': Todo } } },
       },
     },
   })
@@ -68,7 +68,7 @@ export class TodoController {
         description: 'Array of Todo model instances',
         content: {
           'application/json': {
-            schema: {type: 'array', items: {'x-ts-type': Todo}},
+            schema: { type: 'array', items: { 'x-ts-type': Todo } },
           },
         },
       },
@@ -107,7 +107,7 @@ export class TodoController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Todo, {partial: true}),
+          schema: getModelSchemaRef(Todo, { partial: true }),
         },
       },
     })
@@ -125,5 +125,17 @@ export class TodoController {
   })
   async deleteTodo(@param.path.number('id') id: number): Promise<void> {
     await this.todoRepo.deleteById(id);
+  }
+
+  @get('/todos/ex', {
+    responses: {
+      '200': {
+        description: 'TodoEx model instances',
+        content: { 'application/json': { schema: { type: 'array', items: { 'x-ts-type': TodoEx } } } },
+      },
+    },
+  })
+  async todoEx(): Promise<TodoEx[]> {
+    return [];
   }
 }
